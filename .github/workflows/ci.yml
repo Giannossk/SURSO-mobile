@@ -1,0 +1,58 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# CI Workflow — SURSO Mobile
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Validates every push and PR: installs deps, regenerates Riverpod/freezed/
+# json_serializable code (gitignored, so this step is required), analyzes,
+# runs tests, and does a debug APK build as a build-graph sanity check.
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: CI — SURSO Mobile
+
+on:
+  push:
+
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  flutter-check:
+    name: "📱 Analyze, Test & Build"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.6"
+          channel: "stable"
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run build_runner codegen
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Flutter analyze
+        run: flutter analyze
+
+      - name: Flutter test
+        run: flutter test
+
+      - name: Build debug APK
+        run: flutter build apk --debug

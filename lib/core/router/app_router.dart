@@ -12,13 +12,23 @@ import '../../features/admin/screens/admin_home_screen.dart';
 import '../../features/customer/screens/customer_home_screen.dart';
 import '../../features/customer/screens/ticket_detail_screen.dart';
 import '../../features/events/screens/event_detail_screen.dart';
+import '../../features/marketing/screens/about_screen.dart';
+import '../../features/marketing/screens/contact_screen.dart';
+import '../../features/marketing/screens/features_screen.dart';
+import '../../features/marketing/screens/home_screen.dart';
+import '../../features/marketing/screens/not_found_screen.dart';
+import '../../features/marketing/screens/pricing_screen.dart';
+import '../../features/marketing/screens/support_screen.dart';
+import '../../features/marketing/screens/thank_you_screen.dart';
 import '../../features/notifications/screens/notifications_screen.dart';
 import '../../features/organizer/screens/organizer_home_screen.dart';
 import '../widgets/splash_screen.dart';
 
 part 'app_router.g.dart';
 
-const publicRoutes = {'/login', '/signup', '/forgot-password'};
+const authOnlyRoutes = {'/login', '/signup', '/forgot-password'};
+const marketingRoutes = {'/', '/features', '/pricing', '/about-us', '/contact', '/support', '/thank-you'};
+const publicRoutes = {...authOnlyRoutes, ...marketingRoutes};
 
 class _GoRouterRefreshNotifier extends ChangeNotifier {
   _GoRouterRefreshNotifier(Ref ref) {
@@ -45,17 +55,25 @@ GoRouter goRouter(Ref ref) {
       final isAuthenticated = authState is AuthAuthenticated;
 
       if (!isAuthenticated) {
-        return publicRoutes.contains(location) ? null : '/login';
+        if (publicRoutes.contains(location)) return null;
+        return location == '/splash' ? '/' : '/login';
       }
 
-      // Authenticated: keep users off the splash/auth screens.
-      if (location == '/splash' || publicRoutes.contains(location)) {
+      // Authenticated: keep users off the splash, auth screens, and marketing home.
+      if (location == '/splash' || authOnlyRoutes.contains(location) || location == '/') {
         return _homeFor((authState).user.role);
       }
       return null;
     },
     routes: [
       GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
+      GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
+      GoRoute(path: '/features', builder: (context, state) => const FeaturesScreen()),
+      GoRoute(path: '/pricing', builder: (context, state) => const PricingScreen()),
+      GoRoute(path: '/about-us', builder: (context, state) => const AboutScreen()),
+      GoRoute(path: '/contact', builder: (context, state) => const ContactScreen()),
+      GoRoute(path: '/support', builder: (context, state) => const SupportScreen()),
+      GoRoute(path: '/thank-you', builder: (context, state) => const ThankYouScreen()),
       GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       GoRoute(path: '/signup', builder: (context, state) => const SignupScreen()),
       GoRoute(path: '/forgot-password', builder: (context, state) => const ForgotPasswordScreen()),
@@ -73,6 +91,7 @@ GoRouter goRouter(Ref ref) {
       GoRoute(path: '/organizer', builder: (context, state) => const OrganizerHomeScreen()),
       GoRoute(path: '/admin', builder: (context, state) => const AdminHomeScreen()),
     ],
+    errorBuilder: (context, state) => const NotFoundScreen(),
   );
 }
 

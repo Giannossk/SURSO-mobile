@@ -1,0 +1,100 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Release Workflow — SURSO Mobile
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Builds a signed release APK and publishes it as a GitHub Release asset, so
+# it can be downloaded and sideloaded onto an Android device for testing
+# without going through the Play Store.
+#
+# SIGNING:
+#   Release signing uses a private upload keystore, stored only as encrypted
+#   repo secrets (ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD,
+#   ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD) — never committed. The keystore
+#   is decoded to a runner temp path and key.properties is generated on the
+#   fly; both are gone when the ephemeral runner is destroyed.
+# ─────────────────────────────────────────────────────────────────────────────
+
+name: Build & Release Signed APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-release:
+    name: "📱 Build & publish signed APK"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # required to create a release and upload assets
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.44.6"
+          channel: "stable"
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run build_runner codegen
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      # ── Decode the release keystore into the runner's temp dir (outside the
+      #    checked-out workspace, so it can never end up in a git diff) ──────
+      - name: Decode signing keystore
+        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/upload-keystore.jks"
+
+      - name: Write key.properties
+        working-directory: android
+        run: |
+          cat > key.properties <<EOF
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          storeFile=$RUNNER_TEMP/upload-keystore.jks
+          EOF
+
+      - name: Build release APK
+        run: flutter build apk --release
+
+      - name: Remove signing material
+        if: always()
+        working-directory: android
+        run: rm -f key.properties
+
+      - name: Determine release tag
+        id: tag
+        run: echo "tag=v${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+
+      - name: Rename APK for release
+        run: |
+          mkdir -p release-assets
+          cp build/app/outputs/flutter-apk/app-release.apk "release-assets/SURSO-${{ steps.tag.outputs.tag }}.apk"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: "SURSO Mobile ${{ steps.tag.outputs.tag }}"
+          body: |
+            Automated signed build from commit ${{ github.sha }}.
+            Download the APK below and install it on an Android device (enable "Install unknown apps" for your browser/file manager if prompted).
+          prerelease: true
+          make_latest: true
+          files: release-assets/SURSO-${{ steps.tag.outputs.tag }}.apk

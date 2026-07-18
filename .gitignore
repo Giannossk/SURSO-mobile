@@ -43,3 +43,12 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Generated code (build_runner: riverpod_generator, freezed, json_serializable)
+*.g.dart
+*.freezed.dart
+
+# Release signing — never commit the keystore or its credentials
+android/key.properties
+*.jks
+*.keystore
