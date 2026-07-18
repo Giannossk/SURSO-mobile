@@ -17,7 +17,6 @@ import '../../features/marketing/screens/contact_screen.dart';
 import '../../features/marketing/screens/features_screen.dart';
 import '../../features/marketing/screens/home_screen.dart';
 import '../../features/marketing/screens/not_found_screen.dart';
-import '../../features/marketing/screens/pricing_screen.dart';
 import '../../features/marketing/screens/support_screen.dart';
 import '../../features/marketing/screens/thank_you_screen.dart';
 import '../../features/notifications/screens/notifications_screen.dart';
@@ -27,7 +26,7 @@ import '../widgets/splash_screen.dart';
 part 'app_router.g.dart';
 
 const authOnlyRoutes = {'/login', '/signup', '/forgot-password'};
-const marketingRoutes = {'/', '/features', '/pricing', '/about-us', '/contact', '/support', '/thank-you'};
+const marketingRoutes = {'/', '/features', '/about-us', '/contact', '/support', '/thank-you'};
 const publicRoutes = {...authOnlyRoutes, ...marketingRoutes};
 
 class _GoRouterRefreshNotifier extends ChangeNotifier {
@@ -69,7 +68,6 @@ GoRouter goRouter(Ref ref) {
       GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
       GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
       GoRoute(path: '/features', builder: (context, state) => const FeaturesScreen()),
-      GoRoute(path: '/pricing', builder: (context, state) => const PricingScreen()),
       GoRoute(path: '/about-us', builder: (context, state) => const AboutScreen()),
       GoRoute(path: '/contact', builder: (context, state) => const ContactScreen()),
       GoRoute(path: '/support', builder: (context, state) => const SupportScreen()),

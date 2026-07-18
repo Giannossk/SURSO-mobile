@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Placeholder brand mark for SURSO NKUA, pending the organization's real logo.
+  Rounded-square badge with an indigo-to-purple gradient (matching the
+  SURSO-frontend web app's existing accent colors) and a simplified white
+  stethoscope glyph. Replace with the official SURSO logo when one becomes
+  available.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Badge -->
+  <rect x="64" y="64" width="896" height="896" rx="180" ry="180" fill="url(#grad)"/>
+
+  <!-- Stethoscope glyph -->
+  <g fill="none" stroke="#ffffff" stroke-width="44" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M350 300 Q350 440 462 440 Q574 440 574 300"/>
+    <path d="M462 440 L462 560 Q462 660 560 660 L610 660"/>
+  </g>
+  <circle cx="350" cy="300" r="28" fill="#ffffff"/>
+  <circle cx="574" cy="300" r="28" fill="#ffffff"/>
+  <circle cx="650" cy="660" r="80" fill="#ffffff"/>
+  <circle cx="650" cy="660" r="38" fill="url(#grad)"/>
+</svg>

@@ -33,7 +33,6 @@ class MarketingDrawer extends StatelessWidget {
             ),
             ListTile(leading: const Icon(Icons.home_outlined), title: const Text('Home'), onTap: () => goTo('/')),
             ListTile(leading: const Icon(Icons.bolt_outlined), title: const Text('Features'), onTap: () => goTo('/features')),
-            ListTile(leading: const Icon(Icons.sell_outlined), title: const Text('Pricing'), onTap: () => goTo('/pricing')),
             ListTile(leading: const Icon(Icons.info_outline), title: const Text('About'), onTap: () => goTo('/about-us')),
             ListTile(leading: const Icon(Icons.mail_outline), title: const Text('Contact'), onTap: () => goTo('/contact')),
             ListTile(leading: const Icon(Icons.support_agent_outlined), title: const Text('Support'), onTap: () => goTo('/support')),

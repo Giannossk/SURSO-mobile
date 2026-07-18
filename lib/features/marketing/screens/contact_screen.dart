@@ -19,7 +19,7 @@ class ContactScreen extends StatelessWidget {
           Text('Contact Us', style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Text(
-            'Get in touch with the SURSO team. We\'re here to help with any questions about our event management platform.',
+            'Get in touch with the SURSO team. We\'re here to help with any questions about SURSO.',
             style: theme.textTheme.bodyLarge?.copyWith(color: scheme.onSurfaceVariant),
           ),
           const SizedBox(height: 24),

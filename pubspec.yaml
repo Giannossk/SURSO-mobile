@@ -1,5 +1,5 @@
 name: surso
-description: "A new Flutter project."
+description: "SURSO NKUA — Surgical Society of Medical Students at the National and Kapodistrian University of Athens."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -64,6 +64,7 @@ dev_dependencies:
   freezed: ^3.2.6-dev.1
   json_serializable: ^6.14.0
   riverpod_generator: ^4.0.4
+  flutter_launcher_icons: ^0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -106,3 +107,14 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+# flutter_launcher_icons config: generates the Android mipmap-*/ic_launcher.png
+# and iOS AppIcon.appiconset icons from the placeholder SURSO brand mark.
+# Source SVG lives at assets/brand/surso-mark.svg; run with:
+#   dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/brand/surso-mark.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true

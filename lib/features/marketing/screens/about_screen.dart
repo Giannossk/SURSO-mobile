@@ -10,14 +10,14 @@ class _Value {
 }
 
 const _values = [
-  _Value(Icons.lightbulb_outline, 'Innovation',
-      'We keep pushing on what an event platform can do, from live check-ins to real-time analytics.'),
-  _Value(Icons.groups_outlined, 'Collaboration',
-      'Events are a team sport — co-organizer roles and shared dashboards keep everyone aligned.'),
-  _Value(Icons.auto_awesome_outlined, 'Excellence',
-      'From registration to certificates, every step should feel reliable and polished.'),
-  _Value(Icons.public_outlined, 'Impact',
-      'We measure success by the events our organizers pull off, and the communities they bring together.'),
+  _Value(Icons.psychology_alt_outlined, 'Curiosity',
+      'We dig into real surgical research together in Journal Club, asking questions before we have all the answers.'),
+  _Value(Icons.front_hand_outlined, 'Hands-On Learning',
+      'From Ready, Set, Scrub In to our regular workshops, we believe surgical skill starts with doing, not just reading.'),
+  _Value(Icons.handshake_outlined, 'Mentorship',
+      'Meet the Experts connects us directly with surgical professionals who\'ve walked the path we\'re on.'),
+  _Value(Icons.diversity_3_outlined, 'Community',
+      'SURSO is a space for NKUA students who share one thing: a passion for surgery.'),
 ];
 
 class AboutScreen extends StatelessWidget {
@@ -36,7 +36,7 @@ class AboutScreen extends StatelessWidget {
           Text('About SURSO', style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           Text(
-            'Building the future of event management for communities, campuses, and organizations.',
+            'The first student surgical team at NKUA — exploring the art of surgery, together.',
             style: theme.textTheme.bodyLarge?.copyWith(color: scheme.onSurfaceVariant),
           ),
           const SizedBox(height: 24),
@@ -51,8 +51,9 @@ class AboutScreen extends StatelessWidget {
                   Text('Our Mission', style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 8),
                   Text(
-                    'Our mission is to give organizers everything they need to plan, run, and grow impactful events — '
-                    'from registration to certificates — without the chaos of juggling five different tools.',
+                    'SURSO NKUA brings together National and Kapodistrian University of Athens medical students who share a passion for the surgical specialties. '
+                    'Our mission is to help students explore the art of surgery through group activities, hands-on workshops, and direct interaction with professionals in the field — '
+                    'from Journal Club discussions to our Meet the Experts interview series.',
                     style: theme.textTheme.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
                   ),
                 ],
@@ -71,8 +72,8 @@ class AboutScreen extends StatelessWidget {
                   Text('Our Vision', style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
                   const SizedBox(height: 8),
                   Text(
-                    'We envision a world where any community, big or small, can run a professional, well-organized '
-                    'event without needing a technical team.',
+                    'Inspiring future surgeons. We want every student with a curiosity about surgery to find a community, mentors, '
+                    'and real hands-on experience — long before they have to choose a specialty.',
                     style: theme.textTheme.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
                   ),
                 ],

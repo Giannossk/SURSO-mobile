@@ -11,76 +11,34 @@ class _Step {
 }
 
 const _steps = [
-  _Step(Icons.rocket_launch_outlined, 'Create & Plan',
-      'Set up events with dates, venues, registrations, and schedules all from a single dashboard. No chaos, just clarity.'),
-  _Step(Icons.groups_outlined, 'Collaborate & Manage',
-      'Assign roles, coordinate volunteers, and collaborate in real time. Everyone knows their task, every time.'),
-  _Step(Icons.trending_up_outlined, 'Launch & Track',
-      'Go live with confidence. Track registrations, engagement, and attendance, and auto-generate certificates once it\'s done.'),
-  _Step(Icons.workspace_premium_outlined, 'Trusted by Communities',
-      'Trusted by communities like GDG Jalandhar, AWS Cloud Clubs, and Coding Ninjas — 5+ successful events and counting.'),
-];
-
-class _Testimonial {
-  const _Testimonial(this.text, this.name, this.role);
-  final String text;
-  final String name;
-  final String role;
-}
-
-const _testimonials = [
-  _Testimonial(
-    'SURSO revolutionized how we organize our tech conferences. The ticketing and scheduling features are flawless.',
-    'Gurjot Singh',
-    'Event Organizer',
-  ),
-  _Testimonial(
-    'Finally an event platform that doesn\'t feel clunky. SURSO is sleek, fast, and our attendees loved the check-in process.',
-    'Amanpreet Kaur',
-    'Community Manager',
-  ),
-  _Testimonial(
-    'We managed 500+ attendees with zero hiccups. SURSO\'s dashboard gave us real-time insights that saved the day.',
-    'Simar Preet Singh',
-    'Conference Director',
-  ),
-  _Testimonial(
-    'Setting up our annual summit took minutes instead of days. SURSO handles everything from registration to post-event feedback.',
-    'Tracy Wang',
-    'Meetup Host',
-  ),
-  _Testimonial(
-    'The best investment for our community meetups. SURSO makes it incredibly easy to manage RSVPs and communicate with members.',
-    'Vedant Gaidhanne',
-    'Event Planner',
-  ),
-  _Testimonial(
-    'Design is important to us, and SURSO looks beautiful out of the box. It matches our brand perfectly.',
-    'Suraj Mani',
-    'Marketing Lead',
-  ),
+  _Step(Icons.rocket_launch_outlined, 'Plan & Organize',
+      'SURSO\'s team sets up Journal Club sessions, Meet the Experts panels, and workshops from one dashboard.'),
+  _Step(Icons.groups_outlined, 'Coordinate the Team',
+      'Roles are assigned so every organizer knows exactly what they own, from setup to wrap-up.'),
+  _Step(Icons.trending_up_outlined, 'Run & Track',
+      'Check attendees in, track engagement, and issue certificates once an activity wraps.'),
 ];
 
 const _faqs = [
   (
-    q: 'What makes SURSO unique?',
-    a: 'SURSO is purpose-built for communities and organizations to host events end-to-end. From event creation and registrations to team roles, certificates, and analytics — everything is managed in one fast, simple, and intuitive platform.',
+    q: 'What is SURSO?',
+    a: 'SURSO NKUA is the Surgical Society of Medical Students at the National and Kapodistrian University of Athens — the first student surgical team bringing together students with a shared passion for the surgical specialties. We explore the art of surgery through group activities, workshops, and interactions with professionals in the field.',
   ),
   (
-    q: 'Who can use SURSO?',
-    a: 'SURSO is ideal for student communities, tech clubs, colleges, startups, and organizations. Whether you\'re hosting meetups, workshops, hackathons, or large-scale events, SURSO adapts to your needs.',
+    q: 'Who can join SURSO?',
+    a: 'SURSO is open to NKUA medical students who share a passion for the surgical specialties and want to get closer to the field through hands-on activities, talks, and mentorship from professionals.',
   ),
   (
-    q: 'What features does SURSO provide?',
-    a: 'SURSO offers event creation, registrations, automated notifications, team and role management, certificate distribution, user profiles, and a powerful admin dashboard with real-time analytics.',
+    q: 'What activities does SURSO run?',
+    a: 'We run a mix of recurring activities: Journal Club, where we discuss current surgical research; Meet the Experts, our ongoing interview and panel series with surgical professionals (now at volume 7); Ready, Set, Scrub In, a hands-on skills workshop; and regular workshops and talks throughout the year.',
   ),
   (
-    q: 'How can I get started with SURSO?',
-    a: 'Getting started is simple — sign up, create your organization, and launch your first event in minutes. Our intuitive interface ensures you can manage everything without any technical complexity.',
+    q: 'How do I become a member?',
+    a: 'Sign up in the app to create your account and register for SURSO activities. Follow us on Instagram (@surso_uoa) for announcements about upcoming activities.',
   ),
   (
-    q: 'Is SURSO free to use?',
-    a: 'Yes! SURSO offers a free plan suitable for most communities. You can host events, manage participants, and distribute certificates without worrying about hidden costs.',
+    q: 'Where can I follow SURSO?',
+    a: 'You can find us on Instagram, Facebook, LinkedIn, YouTube, and TikTok.',
   ),
 ];
 
@@ -100,16 +58,15 @@ class HomeScreen extends StatelessWidget {
           Text.rich(
             TextSpan(
               children: [
-                const TextSpan(text: 'Run Events '),
-                TextSpan(text: 'Smarter', style: TextStyle(color: scheme.primary)),
+                const TextSpan(text: 'Explore the Art of '),
+                TextSpan(text: 'Surgery', style: TextStyle(color: scheme.primary)),
               ],
             ),
             style: theme.textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
           Text(
-            'A modern event management platform designed to help organizations plan, manage, and host impactful events with ease. '
-            'Trusted by GDG Jalandhar, AWS Cloud Clubs, and Coding Ninjas.',
+            'SURSO NKUA is the first student surgical team at the National and Kapodistrian University of Athens — bringing together students with a shared passion for the surgical specialties. Through Journal Club, Meet the Experts, hands-on workshops, and talks with professionals in the field, we\'re inspiring future surgeons.',
             style: theme.textTheme.bodyLarge?.copyWith(color: scheme.onSurfaceVariant),
           ),
           const SizedBox(height: 24),
@@ -158,63 +115,6 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-          const SizedBox(height: 24),
-          Text('What our users say', style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold)),
-          const SizedBox(height: 4),
-          Text(
-            'From intimate meetups to global conferences, SURSO powers the world\'s most successful events.',
-            style: theme.textTheme.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            height: 190,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: _testimonials.length,
-              separatorBuilder: (_, _) => const SizedBox(width: 12),
-              itemBuilder: (context, index) {
-                final t = _testimonials[index];
-                return SizedBox(
-                  width: 280,
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(children: List.generate(5, (_) => Icon(Icons.star, size: 16, color: scheme.primary))),
-                          const SizedBox(height: 8),
-                          Expanded(
-                            child: Text(
-                              t.text,
-                              style: theme.textTheme.bodySmall,
-                              overflow: TextOverflow.fade,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          Row(
-                            children: [
-                              CircleAvatar(radius: 14, child: Text(t.name.characters.first)),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(t.name, style: theme.textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600)),
-                                    Text(t.role, style: theme.textTheme.labelSmall?.copyWith(color: scheme.onSurfaceVariant)),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
           const SizedBox(height: 32),
           Text('Frequently asked questions', style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold)),
           const SizedBox(height: 12),

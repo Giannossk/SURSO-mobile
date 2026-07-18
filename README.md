@@ -1,6 +1,6 @@
 # SURSO
 
-A new Flutter project.
+The SURSO NKUA mobile app — used by the Surgical Society of Medical Students at the National and Kapodistrian University of Athens to run its own activities: event creation, registrations, QR check-in, and certificates for Journal Club, Meet the Experts, Ready Set Scrub In, and other SURSO programs.
 
 ## Getting Started
 
