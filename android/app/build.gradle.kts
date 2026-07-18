@@ -40,6 +40,11 @@ android {
     signingConfigs {
         if (keystorePropertiesFile.exists()) {
             create("release") {
+                // Explicit: AGP's default keystore type resolution has been observed to
+                // differ between Gradle/AGP versions, misreading a JKS file as PKCS12
+                // (or vice versa) and failing with "Keystore was tampered with, or
+                // password was incorrect" even though the password is correct.
+                storeType = "JKS"
                 keyAlias = keystoreProperties["keyAlias"] as String
                 keyPassword = keystoreProperties["keyPassword"] as String
                 storeFile = file(keystoreProperties["storeFile"] as String)
