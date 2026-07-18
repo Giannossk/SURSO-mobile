@@ -60,6 +60,9 @@ jobs:
       - name: Decode signing keystore
         run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/upload-keystore.jks"
 
+      - name: Debug — checksum decoded keystore
+        run: sha256sum "$RUNNER_TEMP/upload-keystore.jks"
+
       - name: Write key.properties
         working-directory: android
         run: |
